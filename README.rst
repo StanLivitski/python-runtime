@@ -10,8 +10,8 @@ Quick start
 
 1. Add a copy of this directory to your ``PYTHONPATH`` or copy
    its contents to a package within your project. *If you place
-   this code in a package, you'll have to qualify the following
-   ``import`` statements with its name.*
+   this code in a package, you'll have to qualify the following*
+   ``import`` *statements with its name.*
 
 2. Import the ``version`` module near the top of your code.
 
