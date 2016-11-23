@@ -2,7 +2,7 @@
 Python runtime helpers 
 ======================
 
-Helpes that provide Python runtime information to the callers
+Helpers that provide Python runtime information to the callers
 and allow modules to declare their runtime constraints.
 
 Quick start
@@ -28,4 +28,4 @@ Quick start
 4. To retrieve the major and minor Python version numbers of the
    current runtime environment, read the ``version.Python`` tuple.
 
-Refer to the module's PyDoc comments for additional information.
+Please refer to the module's PyDoc comments for additional information.
