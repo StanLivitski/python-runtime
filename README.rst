@@ -1,3 +1,9 @@
+..
+   Copyright © 2016 Stan Livitski
+   
+   Published under MIT License. See `LICENSE` file at the
+   root of this repository for details.
+
 ======================
 Python runtime helpers 
 ======================
@@ -13,14 +19,14 @@ Quick start
    this code in a package, you'll have to qualify the following*
    ``import`` *statements with its name.*
 
-2. Import the ``version`` module near the top of your code.
+2. Import the ``version`` module near the top of your code. ::
 
-	import version
+       import version
 
 3. To declare the lowest supported Python version, add the following
-   line next to the above ``import`` statement: 
+   line next to the above ``import`` statement::
 
-	version.requirePythonVersion(3, 2)
+       version.requirePythonVersion(3, 2)
 
    Replace ``3`` and ``2`` with applicable major and minor Python
    version numbers. The minor version number argument is optional. 
