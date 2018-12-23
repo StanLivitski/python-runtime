@@ -1,6 +1,6 @@
 # vim:fileencoding=UTF-8 
 #
-# Copyright © 2015 Stan Livitski
+# Copyright © 2015, 2018 Stan Livitski
 #     
 # Published under MIT License. See `LICENSE` file at the
 # root of this repository for details.
@@ -15,39 +15,11 @@
 
     Key elements
     ------------
-    Python : A tuple with major and minor Python version numbers.
     requirePythonVersion : A function that checks Python's version
     against supplied constraints.
-
-    Examples
-    ----------------
-    >>> Python[0] > 0 and Python[1] >= 0 and len(Python)
-    2
 """
 
-import sysconfig
-
-def _parsePythonVersion(vstr):
-    """
-    Parse Python's version string to yield a tuple with numbers.
-       
-    Parameters
-    ----------
-    vstr : str
-        Version string returned by `sysconfig.get_python_version`.
-
-    Returns
-    -------
-    tuple
-        A tuple of the form used by the `Python` variable.
-
-    See Also
-    --------    
-    Python : describes the format of this function's return value
-    """
-
-    vnumbers = [ int(n) for n in vstr.split('.', 1) ]
-    return tuple(vnumbers)
+import sys
 
 def _inBoundaries(value, bounds):
     """
@@ -73,7 +45,6 @@ def _inBoundaries(value, bounds):
         assert type(bounds) is int
         return bounds <= value
     
-Python = _parsePythonVersion(sysconfig.get_python_version())
 """
 A tuple with major and minor version numbers of the Python environment
 represented as integers.
@@ -129,8 +100,12 @@ def requirePythonVersion(major, minor = None, legend = "The caller"):
     Unsupported: Legacy widget requires major Python version 0 or newer (less than 1), minor version 1999999999 or newer (less than 999999999), running ...
     """
 
-    if _inBoundaries(Python[0], major):
-        if minor is None or _inBoundaries(Python[1], minor):
+    if 'version_info' not in dir(sys):
+        python = (1, 0, 0, 'unknown', 0)
+    else:
+        python = sys.version_info
+    if _inBoundaries(python[0], major):
+        if minor is None or _inBoundaries(python[1], minor):
             return
     constraints = ''
     if type(major) is tuple:
@@ -146,7 +121,7 @@ def requirePythonVersion(major, minor = None, legend = "The caller"):
     
     raise Unsupported(
         "%s requires major Python version %s, running Python %s.%s"
-        % ((legend, constraints) + Python)
+        % ((legend, constraints) + python[:2])
     )
 
 class Unsupported(Exception):
