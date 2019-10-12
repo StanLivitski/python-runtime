@@ -1,5 +1,5 @@
 ..
-   Copyright © 2016 Stan Livitski
+   Copyright © 2016, 2019 Stan Livitski
    
    Licensed under the Apache License, Version 2.0 with modifications,
    (the "License"); you may not use this file except in compliance
@@ -43,4 +43,5 @@ Quick start
 4. To retrieve the major and minor Python version numbers of the
    current runtime environment, read the ``version.Python`` tuple.
 
-Please refer to the module's PyDoc comments for additional information.
+5. To use other modules or obtain additional information please
+   refer to the modules' PyDoc comments.
