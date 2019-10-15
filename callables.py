@@ -16,7 +16,7 @@
 #
 """
     Helpers for obtaining information about callable
-    objects' and have the same code run different types of callables.
+    objects and have the same code run different types of callables.
 
     Key elements
     ------------
@@ -83,7 +83,7 @@ def prepare_call(callable_, globals_):
     Dereferences ``@staticmethod`` and ``@classmethod`` decorators
     and returns a flag telling whether explicit ``self`` argument
     is required. This method may be used when preparing class
-    definitions (e.g. annotating methods) as well as at runtime.
+    definitions (e.g. decorating methods) as well as at runtime.
     
     Parameters
     ----------
@@ -92,7 +92,9 @@ def prepare_call(callable_, globals_):
     globals_ : dict
         The dictionary of the module defining the target callable,
         or the local dictionary for the scope in which the target callable's
-        container is defined.
+        container is defined. If the container has not yet been defined
+        (e.g. when processing a decorator) this mapping should also contain
+        its future qualified name mapped to the ``object`` type value.
 
     Returns
     -------
